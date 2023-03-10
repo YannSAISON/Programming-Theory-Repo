@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// INHERITANCE
 public class MachineGun : Weapon
 {
     [SerializeField] private float _strayFactor;
@@ -17,6 +18,7 @@ public class MachineGun : Weapon
 
     [SerializeField] private Slider _heatBar;
 
+    // POLYMORPHISM
     // Start is called before the first frame update
     new void Awake()
     {
@@ -31,6 +33,7 @@ public class MachineGun : Weapon
         base.Awake();
     }
 
+    // POLYMORPHISM
     private new void Update()
     {
         _heatCounter -= Time.deltaTime;
@@ -47,7 +50,7 @@ public class MachineGun : Weapon
 
     private float RandomStray()
     {
-        return Random.Range(-_strayFactor, _strayFactor);
+        return Random.Range(-_strayFactor * (1 + ((float)_heating / (float)_maxHeat)), _strayFactor * (1 + ((float)_heating / (float)_maxHeat)));
     }
 
     private IEnumerator OverheatCoroutine()
@@ -70,6 +73,7 @@ public class MachineGun : Weapon
         }
     }
 
+    // POLYMORPHISM
     protected override void PickedUp()
     {
         if (!_heatBar.gameObject.activeSelf)
@@ -77,6 +81,7 @@ public class MachineGun : Weapon
         base.PickedUp();
     }
 
+    // POLYMORPHISM
     public override void Shoot()
     {
         float newTime = Time.time;
@@ -98,6 +103,7 @@ public class MachineGun : Weapon
         _lastTime = newTime;
     }
 
+    // POLYMORPHISM
     public override void Drop()
     {
         _heatBar.gameObject.SetActive(false);

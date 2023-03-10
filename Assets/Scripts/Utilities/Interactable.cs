@@ -44,6 +44,7 @@ public class Interactable : MonoBehaviour
         isHovered = false;
     }
 
+    // ABSTRACTION
     private void OnLooking()
     {
         float x = Screen.width / 2;
@@ -61,6 +62,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
     private void OnUnlooking()
     {
         float x = Screen.width / 2;

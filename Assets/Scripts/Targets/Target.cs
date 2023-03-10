@@ -17,17 +17,23 @@ public class Target : MonoBehaviour
 
     protected bool _isTouched = false;
 
-    protected virtual void Start()
+    //POLYMORPHISM
+    protected virtual void InstantiateMovement()
     {
-        _mesh = GetComponent<MeshRenderer>();
-        gameObject.tag = "Target";
-
         int index = Random.Range(0, SpawningZones.Length);
 
         _moveDest = SpawningZones[index].dir;
         _basePoint = GetRandomLoc(SpawningZones[index].Coll);
         transform.position = _basePoint;
         _destPoint = _basePoint + (_moveDest * _maxDistance);
+    }
+
+    protected virtual void Start()
+    {
+        _mesh = GetComponent<MeshRenderer>();
+        gameObject.tag = "Target";
+
+        InstantiateMovement();
     }
 
     private Vector3 GetRandomLoc(Collider collider)
@@ -52,6 +58,7 @@ public class Target : MonoBehaviour
             Move();
     }
 
+    // POLYMORPHISM
     protected virtual void Move()
     {
         if (Vector3.Distance(transform.position, _destPoint) < 0.2f)
@@ -64,6 +71,7 @@ public class Target : MonoBehaviour
         transform.Translate(Time.deltaTime * _speed * (_destPoint - _basePoint).normalized);
     }
 
+    // ABSTRACTION
     public virtual void Hit()
     {
         if (!_isTouched)

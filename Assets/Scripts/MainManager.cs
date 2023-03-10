@@ -6,6 +6,7 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
 
+    // ENCAPSULATION
     private string _playerName;
     public string PlayerName
     {

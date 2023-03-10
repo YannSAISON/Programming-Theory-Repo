@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// INHERITANCE
 public class Weapon : Interactable
 {
     protected int AmountRemaining { get; set; }
@@ -15,6 +16,7 @@ public class Weapon : Interactable
     [SerializeField] protected TextMeshProUGUI ammunitionsText;
     [SerializeField] protected GameObject bulletPrefab;
 
+    // ENCAPSULATION
     protected Transform shootPoint;
     public Transform ShootPoint
     {
@@ -25,6 +27,7 @@ public class Weapon : Interactable
         }
     }
 
+    // ENCAPSULATION
     protected float _damages;
     public float Damages
     {
@@ -37,6 +40,7 @@ public class Weapon : Interactable
         }
     }
 
+    // ENCAPSULATION
     protected int _magazineCapacity;
     public int MagazineCapacity
     {
@@ -49,6 +53,7 @@ public class Weapon : Interactable
         }
     }
 
+    // ENCAPSULATION
     protected float _cadency;
     public float Cadency
     {
@@ -61,6 +66,7 @@ public class Weapon : Interactable
         }
     }
 
+    // ENCAPSULATION
     protected float _rechargeTime;
     public float RechargeTime
     {

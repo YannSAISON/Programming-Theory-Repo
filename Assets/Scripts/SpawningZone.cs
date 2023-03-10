@@ -6,8 +6,8 @@ public class SpawningZone : MonoBehaviour
 {
     public Vector3 dir;
 
+    // ENCAPSULATION
     private Collider _collider;
-
     public Collider Coll
     {
         get { return _collider; }

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class Shotgun : Weapon
 {
     [SerializeField] private float _strayFactor = 10;
     [SerializeField] private int _nbBullet = 9;
 
-    [SerializeField] 
+    // POLYMORPHISM
     // Start is called before the first frame update
     new void Awake()
     {
@@ -30,6 +31,7 @@ public class Shotgun : Weapon
         Instantiate(bulletPrefab, shootPoint.position, Quaternion.FromToRotation(Vector3.forward, shootPoint.forward) * bulletPrefab.transform.rotation * Quaternion.Euler(addRotation));
     }
 
+    // POLYMORPHISM
     public override void Shoot()
     {
         float newTime = Time.time;
@@ -48,17 +50,12 @@ public class Shotgun : Weapon
         _lastTime = newTime;
     }
 
+    // POLYMORPHISM
     protected override IEnumerator RechargeRoutine()
     {
         yield return new WaitForSeconds(_rechargeTime / _magazineCapacity);
         UpdateAmmunitions(AmountRemaining + 1);
         if (AmountRemaining < _magazineCapacity && !_isShooting)
             StartCoroutine(nameof(RechargeRoutine));
-    }
-
-    public override void Recharge()
-    {
-        _isShooting = false;
-        StartCoroutine(nameof(RechargeRoutine));
     }
 }
